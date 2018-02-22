@@ -1,8 +1,6 @@
 # **Finding Lane Lines on the Road** 
 
-## Writeup Template
-
-### You can use this file as a template for your writeup if you want to submit it as a markdown file. But feel free to use some other method and submit a pdf if you prefer.
+## Yujun Wang
 
 ---
 
@@ -13,35 +11,37 @@ The goals / steps of this project are the following:
 * Reflect on your work in a written report
 
 
-[//]: # (Image References)
-
-[image1]: ./examples/grayscale.jpg "Grayscale"
-
----
-
 ### Reflection
 
 ### 1. Describe your pipeline. As part of the description, explain how you modified the draw_lines() function.
 
-My pipeline consisted of 5 steps. First, I converted the images to grayscale, then I .... 
+My pipeline consisted of 5 steps. 
 
-In order to draw a single line on the left and right lanes, I modified the draw_lines() function by ...
+* Bonvert the images to grayscale
+* Blur the grayscale image with gaussian filter
+* Detect edge using canny edge detector
+* Seletct a ROI of potentional road marks could appear in the image 
+* Detect straight lines within the ROI with hough transform line detector
+* Select lines with a slope between 0.876058051 and 2.44685437779 rad
+* Draw those lines on top of the original image
 
-If you'd like to include images to show how the pipeline works, here is how to include an image: 
-
-![alt text][image1]
+In order to draw a single line on the left and right lanes, I modified the draw_lines() function by selecting lines with a slope between 0.876058051 and 2.44685437779 rad
 
 
 ### 2. Identify potential shortcomings with your current pipeline
 
 
-One potential shortcoming would be what would happen when ... 
+One potential shortcoming would be what would happen when 
+* it's a curving line
+* line marks are not good
+* low light condition
 
-Another shortcoming could be ...
+Another shortcoming could be 
+* hough transform is too slow
 
 
 ### 3. Suggest possible improvements to your pipeline
 
-A possible improvement would be to ...
+A possible improvement would be: insteaded of using hough transform to find straight lines, use find countour function to get the boundry of those marks, and fit a line to it, it will be faster than hough transform.
 
-Another potential improvement could be to ...
+
