@@ -23,9 +23,10 @@ My pipeline consisted of 5 steps.
 * Seletct a ROI of potentional road marks could appear in the image 
 * Detect straight lines within the ROI with hough transform line detector
 * Select lines with a slope between 0.876058051 and 2.44685437779 rad
+* Average left lines and right lines to select the result lines
 * Draw those lines on top of the original image
 
-In order to draw a single line on the left and right lanes, I modified the draw_lines() function by selecting lines with a slope between 0.876058051 and 2.44685437779 rad
+In order to draw a single line on the left and right lanes, I modified the draw_lines() function by selecting lines with a slope between 0.876058051 and 2.44685437779 rad. After got those lines, average them to select the left line and right line.
 
 
 ### 2. Identify potential shortcomings with your current pipeline
